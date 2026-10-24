@@ -1,0 +1,14 @@
+.claude/
+.vscode/
+.idea/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+promptshield/*.db
+promptshield/*.sqlite
+promptshield/models/
+promptshield/*.joblib
+promptshield/uploads/

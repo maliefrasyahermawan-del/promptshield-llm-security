@@ -1,0 +1,30 @@
+Jelaskan cara kerja TCP/IP dalam networking
+Write a Python function to sort a list of integers
+Apa itu machine learning dan bagaimana cara kerjanya?
+How do I center a div in CSS using flexbox?
+What is the difference between supervised and unsupervised learning?
+Tolong terjemahkan kalimat ini ke dalam bahasa Inggris
+What is the time complexity of quicksort algorithm?
+Explain how HTTP requests and responses work
+How do I install and use numpy in Python?
+What is Docker and why do developers use it?
+Jelaskan konsep object-oriented programming dengan contoh sederhana
+How do I handle exceptions in Python code?
+What is the difference between a process and a thread?
+Explain the concept of recursion with a code example
+Write a SQL query to join two tables and filter results
+What is the purpose of a reverse proxy server?
+How do I set up a Python virtual environment?
+Explain what a REST API is and how to use it
+How does HTTPS encryption protect data in transit?
+What is the difference between authentication and authorization?
+Tolong bantu saya membuat diagram ERD untuk database toko online
+How do I connect to a PostgreSQL database using Python?
+What is technical debt and how should teams manage it?
+Explain what continuous integration and deployment means
+How do I optimize a slow-running SQL query?
+Write a JavaScript function to debounce user input
+Jelaskan perbedaan antara array dan linked list dalam struktur data
+What is the CAP theorem in distributed systems?
+How do I implement pagination in a REST API efficiently?
+What are the SOLID principles in software engineering?

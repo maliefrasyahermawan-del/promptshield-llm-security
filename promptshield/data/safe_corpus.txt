@@ -1,0 +1,300 @@
+Jelaskan perbedaan TCP dan UDP dalam networking
+Write a Python function to sort a list of numbers
+Apa itu machine learning dan bagaimana cara kerjanya?
+Tolong terjemahkan kalimat ini ke dalam bahasa Inggris
+How do I center a div in CSS?
+What is the difference between supervised and unsupervised learning?
+Can you explain how a neural network works?
+Write a SQL query to find all users who signed up in the last 30 days
+Jelaskan cara kerja algoritma quicksort
+What is the time complexity of binary search?
+How do I reverse a string in Python?
+Tolong bantu saya menulis email profesional untuk klien
+What are the main differences between REST and GraphQL?
+Explain the concept of recursion with an example
+How does garbage collection work in Java?
+Write a regular expression to validate email addresses
+Apa perbedaan antara HTTP dan HTTPS?
+How do I install numpy in Python?
+What is Docker and why is it useful?
+Explain the concept of microservices architecture
+How do I create a linked list in C++?
+Tolong jelaskan apa itu blockchain dalam bahasa sederhana
+What is the difference between == and === in JavaScript?
+How do I merge two dictionaries in Python?
+Write a function to check if a string is a palindrome
+Apa itu API dan bagaimana cara menggunakannya?
+How does the HTTP request-response cycle work?
+Explain what a hash table is and how it works
+What is Big O notation and why is it important?
+How do I implement a binary tree in Java?
+Write a CSS animation for a spinning loading icon
+Jelaskan perbedaan antara relational dan non-relational database
+How do I handle exceptions in Python?
+What is the difference between a process and a thread?
+Explain how public key cryptography works
+How do I use async/await in JavaScript?
+What is Redux and when should I use it?
+Tolong bantu saya membuat presentasi tentang cybersecurity
+How do I set up a virtual environment in Python?
+Explain the SOLID principles in software engineering
+What is the difference between stack and heap memory?
+How do I connect to a MySQL database in Python?
+Write a function to find the fibonacci sequence
+Apa itu machine learning pipeline?
+How does HTTPS encryption protect data in transit?
+Explain what a REST API is
+How do I use Git for version control?
+What is the purpose of a Makefile?
+How do I parse JSON in Python?
+Write a bash script to backup files
+Jelaskan cara kerja OAuth 2.0
+What is the difference between authentication and authorization?
+How do I implement pagination in a REST API?
+Explain what containerization is in software development
+How does a load balancer work?
+What is a webhook and how do I implement one?
+How do I optimize a slow SQL query?
+Tolong jelaskan konsep OOP dengan contoh sederhana
+What is the difference between PUT and PATCH in REST APIs?
+How do I handle CORS errors in my web app?
+Explain what an abstract class is in Java
+Write a Python script to read a CSV file
+How do I implement caching in a web application?
+What is the Observer design pattern?
+How does DNS resolution work?
+Explain the difference between synchronous and asynchronous programming
+How do I create a virtual machine?
+What is Kubernetes and how does it relate to Docker?
+How do I write unit tests in Python?
+Tolong bantu saya debug kode Python ini
+What is the difference between React and Vue.js?
+How do I implement JWT authentication?
+Explain what a closure is in JavaScript
+How does memory management work in Python?
+Write a function to implement bubble sort
+What is the CAP theorem in distributed systems?
+How do I set up continuous integration with GitHub Actions?
+Explain what idempotency means in REST APIs
+How do I use environment variables in a Python app?
+What is the difference between SQL and NoSQL databases?
+How do I implement a simple chat application using WebSockets?
+Tolong jelaskan apa itu DevOps
+What is type safety and why does it matter?
+How do I prevent SQL injection in my application?
+Explain what memoization is and when to use it
+How does a compiler differ from an interpreter?
+What is the event loop in Node.js?
+How do I create a RESTful API with Flask?
+Write a Python class for a simple bank account
+Jelaskan apa itu microservices dan kapan harus digunakan
+What is the difference between let, const, and var in JavaScript?
+How do I implement error handling in a Node.js application?
+Explain what lazy loading is
+How does the V8 JavaScript engine work?
+What is a race condition and how do I prevent it?
+How do I use regular expressions in Python?
+Tolong bantu saya membuat ERD untuk database e-commerce
+What is technical debt and how do I manage it?
+How do I implement a search function in a web application?
+Explain the concept of eventual consistency
+How do I use Docker Compose?
+What is the repository pattern in software design?
+How do I implement rate limiting in an API?
+Apa perbedaan antara framework dan library?
+Explain how websockets work
+How do I configure nginx as a reverse proxy?
+What is a deadlock and how can it be prevented?
+How do I implement a priority queue in Python?
+Write a function to calculate factorial recursively
+Jelaskan konsep dependency injection
+What is the difference between shallow and deep copy in Python?
+How do I secure an API endpoint?
+Explain what a foreign key constraint is in SQL
+How do I create an index in PostgreSQL?
+What is the command pattern in software design?
+How do I implement undo functionality in an application?
+Tolong bantu saya memahami cara kerja internet
+What is ACID in database systems?
+How do I deploy a Python application to production?
+Explain what a race condition is in concurrent programming
+What is the difference between stateful and stateless applications?
+How do I implement a graph traversal algorithm?
+Write a Python function to flatten a nested list
+Jelaskan perbedaan antara kompilasi dan interpretasi
+What are decorators in Python and how do I use them?
+How do I use Pandas for data analysis?
+Explain what normalization is in databases
+How do I implement a queue using two stacks?
+What is the difference between monolithic and distributed architecture?
+How do I write a multi-threaded program in Java?
+Tolong bantu saya membuat API dokumentasi yang baik
+What is the observer pattern and when should I use it?
+How do I implement a simple recommendation system?
+Explain how version control works
+What is the difference between encoding and encryption?
+How do I profile a Python application for performance?
+Write a function to detect if a linked list has a cycle
+Jelaskan cara membuat aplikasi mobile yang responsif
+What is eventual consistency in distributed systems?
+How do I use Redis for caching?
+Explain the Model-View-Controller pattern
+How do I implement full-text search in PostgreSQL?
+What is a singleton pattern and when is it appropriate?
+How do I debug a memory leak in a Node.js application?
+Tolong jelaskan apa itu data science
+What is the difference between a class and an object?
+How do I implement OAuth2 in my application?
+Explain what polymorphism is in OOP
+How does a relational database index work internally?
+What is the difference between TDD and BDD?
+How do I create a mobile-responsive website?
+Write a function to check if a number is prime
+Jelaskan tentang keamanan aplikasi web secara umum
+What is continuous deployment and how does it work?
+How do I implement dark mode in a web application?
+Explain what dependency hell is and how to avoid it
+How do I optimize React component rendering?
+What is the strategy pattern in software design?
+How do I set up a development environment for Python?
+Tolong bantu saya memahami konsep cloud computing
+What is the difference between a monorepo and polyrepo?
+How do I implement file upload in a REST API?
+Explain what serverless computing is
+How does a message queue work?
+What is the proxy pattern in software design?
+How do I write effective documentation for my code?
+Write a Python script to scrape a simple webpage
+Jelaskan cara kerja sistem operasi secara umum
+What is the difference between a socket and a port?
+How do I implement geolocation in a web application?
+Explain what a race condition is in JavaScript
+How do I use TypeScript with React?
+What is the factory pattern in software design?
+How do I secure a REST API using API keys?
+Tolong jelaskan cara instalasi dan konfigurasi Linux server
+What is the difference between synchronous and asynchronous I/O?
+How do I implement pagination in a SQL query?
+Explain what a design pattern is
+How does the browser rendering engine work?
+What is the difference between a primary key and unique key in SQL?
+How do I implement two-factor authentication?
+Write a simple HTTP server in Python
+Jelaskan apa itu agile methodology
+What is the difference between horizontal and vertical scaling?
+How do I use Python generators?
+Explain what a buffer overflow vulnerability is
+How does the Internet Protocol work?
+What is a proxy server and how does it work?
+How do I implement search autocomplete?
+Tolong bantu saya membuat rencana belajar programming
+What is the difference between PUT and POST in HTTP?
+How do I use list comprehensions in Python?
+Explain what a semaphore is in operating systems
+How does a virtual private network work?
+What is the iterator pattern in software design?
+How do I implement GraphQL in a Node.js application?
+Write a function to convert a binary number to decimal
+Jelaskan perbedaan antara array dan linked list
+What is reactive programming and when should I use it?
+How do I handle authentication with cookies vs tokens?
+Explain what a compiler optimization is
+How does email work at a protocol level?
+What is the command-line interface and how do I use it effectively?
+How do I implement a simple machine learning model in Python?
+Tolong bantu saya memahami cara kerja database indexing
+What is the composite pattern in software design?
+How do I use feature flags in my application?
+Explain what a content delivery network is
+How does browser caching work?
+What is the difference between hard and soft delete in databases?
+How do I implement a circuit breaker pattern?
+Write a shell script to monitor disk usage
+Jelaskan konsep RESTful API secara menyeluruh
+What is chaos engineering and how is it practiced?
+How do I implement API versioning?
+Explain what a hash collision is
+How does the HTTPS handshake work?
+What is the decorator pattern in software design?
+How do I use context managers in Python?
+Tolong jelaskan cara kerja compiler dan linker
+What is the difference between eager and lazy loading?
+How do I implement a distributed lock?
+Explain what a service mesh is
+How does MapReduce work?
+What is the command bus pattern?
+How do I implement real-time notifications?
+Write a Python script to process a large CSV file efficiently
+Jelaskan apa itu DevSecOps
+What is the difference between a mutex and a semaphore?
+How do I implement a simple blockchain?
+Explain what dependency inversion is
+How does a CDN reduce latency?
+What is the bridge pattern in software design?
+How do I use Python's multiprocessing module?
+Tolong bantu saya memahami cara kerja algoritma sorting
+What is a cron job and how do I set one up?
+How do I implement logging best practices in my application?
+Explain what service discovery is in microservices
+How does OAuth authentication flow work?
+What is the facade pattern in software design?
+How do I profile database query performance?
+Write a function to implement depth-first search
+Jelaskan tentang prinsip keamanan siber yang penting
+What is the difference between compilation and transpilation?
+How do I implement a retry mechanism in my application?
+Explain what blue-green deployment is
+How does a reverse proxy work?
+What is the visitor pattern in software design?
+How do I implement a simple neural network from scratch?
+Tolong jelaskan konsep DevOps secara sederhana
+What is the difference between data at rest and data in transit?
+How do I set up monitoring and alerting for my application?
+Explain what a zero-trust security model is
+How does database replication work?
+What is infrastructure as code?
+How do I implement graceful shutdown in a server application?
+What are the best practices for API error handling?
+Jelaskan cara kerja komputer kuantum dalam bahasa sederhana
+How do I use Python's asyncio library effectively?
+What is the difference between a stack overflow and heap overflow?
+How do I implement a trie data structure?
+Apa itu Kubernetes dan bagaimana cara kerjanya?
+What are the benefits of using TypeScript over JavaScript?
+How do I write a simple compiler in Python?
+Explain the difference between TCP and UDP protocols
+How do I implement rate limiting with Redis?
+What is the difference between SOAP and REST APIs?
+Tolong bantu saya memahami cara kerja SSL/TLS
+How do I create a simple CLI tool in Python?
+What is the observer pattern and how do I use it?
+How does garbage collection work in Python?
+Jelaskan perbedaan antara monolith dan microservices
+What is the purpose of the OSI model in networking?
+How do I implement WebSocket authentication?
+What is event-driven architecture?
+How do I use Celery for background tasks in Django?
+Tolong bantu saya memahami konsep cloud-native applications
+What is the difference between vertical and horizontal scaling?
+How do I implement a simple key-value store?
+What is eventual consistency and when is it acceptable?
+How do I set up load testing with Locust?
+Jelaskan cara kerja DNS secara detail
+What is the Circuit Breaker pattern in microservices?
+How do I implement distributed tracing in my application?
+What is the difference between REST and gRPC?
+How do I use pytest fixtures effectively?
+Tolong bantu saya memahami cara kerja Kafka message broker
+What are the best practices for database migrations?
+How do I implement full-text search with Elasticsearch?
+What is the difference between unit and integration testing?
+How do I containerize a Python application with Docker?
+Jelaskan perbedaan antara synchronous dan asynchronous processing
+What is the strangler fig pattern in software migration?
+How do I implement event sourcing in my application?
+What is Domain-Driven Design and when should I use it?
+How do I use Python dataclasses effectively?
+Tolong bantu saya memahami konsep CQRS
+What are the tradeoffs between SQL and NoSQL databases?
+How do I implement a simple pub-sub system?
+What are best practices for logging in distributed systems?

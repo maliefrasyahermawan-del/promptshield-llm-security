@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PromptShield — Logs</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-brand">
+    <span class="shield-icon">🛡</span> PromptShield
+  </div>
+  <div class="nav-links">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logs" class="active">Logs</a>
+    <a href="/metrics">Metrics</a>
+    <a href="/docs">API Docs</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="page-header">
+    <h1>Request Logs</h1>
+    <span class="sub">{{ total }} total records</span>
+  </div>
+
+  <!-- Filter bar -->
+  <div class="filter-bar">
+    <form method="get" action="/logs" class="filter-form">
+      <label>Filter by verdict:</label>
+      <select name="verdict" onchange="this.form.submit()">
+        <option value="" {% if not verdict_filter %}selected{% endif %}>All</option>
+        <option value="ALLOW" {% if verdict_filter == 'ALLOW' %}selected{% endif %}>ALLOW</option>
+        <option value="BLOCK" {% if verdict_filter == 'BLOCK' %}selected{% endif %}>BLOCK</option>
+      </select>
+    </form>
+  </div>
+
+  <div class="table-card">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Session</th>
+            <th>Prompt</th>
+            <th>Verdict</th>
+            <th>Layer</th>
+            <th>Confidence</th>
+            <th>Latency</th>
+            <th>Reason</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for log in logs %}
+          <tr>
+            <td class="mono nowrap">{{ log.created_at }}</td>
+            <td class="mono">{{ log.session_id[:8] if log.session_id else '—' }}</td>
+            <td>
+              <details>
+                <summary class="prompt-preview">{{ log.prompt[:60] }}{% if log.prompt|length > 60 %}…{% endif %}</summary>
+                <div class="prompt-full">{{ log.prompt }}</div>
+              </details>
+            </td>
+            <td><span class="badge badge-{{ log.verdict.lower() }}">{{ log.verdict }}</span></td>
+            <td>{% if log.triggered_layer > 0 %}<span class="layer-badge layer-{{ log.triggered_layer }}">L{{ log.triggered_layer }}</span>{% else %}—{% endif %}</td>
+            <td>{{ log.confidence }}</td>
+            <td class="nowrap">{{ log.latency_ms }}ms</td>
+            <td class="reason-cell">{{ log.reason[:80] }}{% if log.reason|length > 80 %}…{% endif %}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="8" class="empty">No logs found</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  {% if total > per_page %}
+  <div class="pagination">
+    {% if page > 1 %}
+    <a href="/logs?page={{ page - 1 }}&verdict={{ verdict_filter }}" class="btn-page">← Prev</a>
+    {% endif %}
+    <span class="page-info">Page {{ page }} / {{ (total // per_page) + (1 if total % per_page else 0) }}</span>
+    {% if page * per_page < total %}
+    <a href="/logs?page={{ page + 1 }}&verdict={{ verdict_filter }}" class="btn-page">Next →</a>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+</body>
+</html>

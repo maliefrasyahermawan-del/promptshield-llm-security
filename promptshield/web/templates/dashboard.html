@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PromptShield Dashboard</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-brand">
+    <span class="shield-icon">🛡</span> PromptShield
+  </div>
+  <div class="nav-links">
+    <a href="/dashboard" class="active">Dashboard</a>
+    <a href="/logs">Logs</a>
+    <a href="/metrics">Metrics</a>
+    <a href="/docs">API Docs</a>
+  </div>
+  <div class="nav-status">
+    <span class="status-dot" id="statusDot"></span>
+    <span id="statusText">Connecting...</span>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="page-header">
+    <h1>Security Dashboard</h1>
+    <span class="refresh-badge" id="refreshBadge">Auto-refresh: 5s</span>
+  </div>
+
+  <!-- Metric Cards -->
+  <div class="metric-grid">
+    <div class="metric-card">
+      <div class="metric-label">Total Requests</div>
+      <div class="metric-value" id="totalRequests">{{ stats.total }}</div>
+      <div class="metric-sub">All time</div>
+    </div>
+    <div class="metric-card metric-danger">
+      <div class="metric-label">Block Rate</div>
+      <div class="metric-value" id="blockRate">{{ stats.block_rate }}%</div>
+      <div class="metric-sub" id="blockedCount">{{ stats.blocked }} blocked</div>
+    </div>
+    <div class="metric-card metric-warning">
+      <div class="metric-label">Avg Latency</div>
+      <div class="metric-value" id="avgLatency">{{ stats.avg_latency_ms }}ms</div>
+      <div class="metric-sub">Processing time</div>
+    </div>
+    <div class="metric-card metric-success">
+      <div class="metric-label">Allowed</div>
+      <div class="metric-value" id="allowedCount">{{ stats.allowed }}</div>
+      <div class="metric-sub">Passed all layers</div>
+    </div>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h3>Traffic Distribution</h3>
+      <div class="chart-wrap">
+        <canvas id="donutChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>Blocks by Layer</h3>
+      <div class="chart-wrap">
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card chart-wide">
+      <h3>Request Volume (Last 24h)</h3>
+      <div class="chart-wrap">
+        <canvas id="lineChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Logs Table -->
+  <div class="table-card">
+    <div class="table-header">
+      <h3>Recent Activity</h3>
+      <a href="/logs" class="btn-sm">View all →</a>
+    </div>
+    <div class="table-wrap">
+      <table id="logsTable">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Prompt Preview</th>
+            <th>Verdict</th>
+            <th>Layer</th>
+            <th>Confidence</th>
+            <th>Latency</th>
+          </tr>
+        </thead>
+        <tbody id="logsBody">
+          {% for log in recent_logs %}
+          <tr>
+            <td class="mono">{{ log.created_at }}</td>
+            <td class="prompt-preview" title="{{ log.prompt }}">{{ log.prompt }}</td>
+            <td><span class="badge badge-{{ log.verdict.lower() }}">{{ log.verdict }}</span></td>
+            <td>{% if log.triggered_layer > 0 %}Layer {{ log.triggered_layer }}{% else %}—{% endif %}</td>
+            <td>{{ log.confidence }}</td>
+            <td>{{ log.latency_ms }}ms</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="6" class="empty">No requests yet</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+// Store initial server-rendered data
+const initialStats = {
+  total: {{ stats.total }},
+  blocked: {{ stats.blocked }},
+  allowed: {{ stats.allowed }},
+  block_rate: {{ stats.block_rate }},
+  avg_latency_ms: {{ stats.avg_latency_ms }},
+  layer1_blocks: {{ stats.layer1_blocks }},
+  layer2_blocks: {{ stats.layer2_blocks }},
+  layer3_blocks: {{ stats.layer3_blocks }},
+  hourly: {{ stats.hourly | tojson }}
+};
+
+// Chart.js color palette
+const COLORS = {
+  allow: '#22c55e',
+  block: '#ef4444',
+  layer1: '#3b82f6',
+  layer2: '#f59e0b',
+  layer3: '#8b5cf6',
+  line: '#6366f1',
+  bg: 'rgba(99,102,241,0.15)'
+};
+
+const chartDefaults = {
+  color: '#e2e8f0',
+  plugins: { legend: { labels: { color: '#94a3b8' } } }
+};
+
+// Donut chart
+const donutCtx = document.getElementById('donutChart').getContext('2d');
+const donutChart = new Chart(donutCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Allowed', 'Blocked'],
+    datasets: [{ data: [initialStats.allowed, initialStats.blocked],
+      backgroundColor: [COLORS.allow, COLORS.block],
+      borderWidth: 0, hoverOffset: 4 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '65%',
+    plugins: { legend: { position: 'bottom', labels: { color: '#94a3b8', padding: 16 } } }
+  }
+});
+
+// Bar chart
+const barCtx = document.getElementById('barChart').getContext('2d');
+const barChart = new Chart(barCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Layer 1\nPatterns', 'Layer 2\nSemantic', 'Layer 3\nLLM Judge'],
+    datasets: [{ label: 'Blocks', data: [initialStats.layer1_blocks, initialStats.layer2_blocks, initialStats.layer3_blocks],
+      backgroundColor: [COLORS.layer1, COLORS.layer2, COLORS.layer3],
+      borderRadius: 6, borderSkipped: false }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+      y: { ticks: { color: '#94a3b8', stepSize: 1 }, grid: { color: 'rgba(255,255,255,0.05)' } }
+    }
+  }
+});
+
+// Line chart
+function buildHourlyLabels() {
+  const now = new Date();
+  const labels = [];
+  for (let i = 23; i >= 0; i--) {
+    const h = new Date(now - i * 3600000);
+    labels.push(h.getHours().toString().padStart(2,'0') + ':00');
+  }
+  return labels;
+}
+
+function buildHourlyData(hourly) {
+  const now = new Date();
+  const data = [];
+  for (let i = 23; i >= 0; i--) {
+    const h = ((now.getHours() - i) + 24) % 24;
+    data.push(hourly[h] || 0);
+  }
+  return data;
+}
+
+const lineCtx = document.getElementById('lineChart').getContext('2d');
+const lineChart = new Chart(lineCtx, {
+  type: 'line',
+  data: {
+    labels: buildHourlyLabels(),
+    datasets: [{ label: 'Requests', data: buildHourlyData(initialStats.hourly),
+      borderColor: COLORS.line, backgroundColor: COLORS.bg,
+      fill: true, tension: 0.4, pointRadius: 3, pointBackgroundColor: COLORS.line }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { color: '#94a3b8' } } },
+    scales: {
+      x: { ticks: { color: '#94a3b8', maxTicksLimit: 12 }, grid: { color: 'rgba(255,255,255,0.05)' } },
+      y: { ticks: { color: '#94a3b8', stepSize: 1 }, grid: { color: 'rgba(255,255,255,0.05)' } }
+    }
+  }
+});
+
+// Auto-refresh via fetch
+async function refreshData() {
+  try {
+    const [statsRes, logsRes] = await Promise.all([
+      fetch('/api/stats'),
+      fetch('/api/recent?limit=10')
+    ]);
+    const stats = await statsRes.json();
+    const logs = await logsRes.json();
+
+    // Update metric cards
+    document.getElementById('totalRequests').textContent = stats.total;
+    document.getElementById('blockRate').textContent = stats.block_rate + '%';
+    document.getElementById('blockedCount').textContent = stats.blocked + ' blocked';
+    document.getElementById('avgLatency').textContent = stats.avg_latency_ms + 'ms';
+    document.getElementById('allowedCount').textContent = stats.allowed;
+
+    // Update charts
+    donutChart.data.datasets[0].data = [stats.allowed, stats.blocked];
+    donutChart.update('none');
+
+    barChart.data.datasets[0].data = [stats.layer1_blocks, stats.layer2_blocks, stats.layer3_blocks];
+    barChart.update('none');
+
+    lineChart.data.labels = buildHourlyLabels();
+    lineChart.data.datasets[0].data = buildHourlyData(stats.hourly);
+    lineChart.update('none');
+
+    // Update table
+    const tbody = document.getElementById('logsBody');
+    if (logs.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" class="empty">No requests yet</td></tr>';
+    } else {
+      tbody.innerHTML = logs.map(log => `
+        <tr>
+          <td class="mono">${log.created_at}</td>
+          <td class="prompt-preview" title="${escHtml(log.prompt)}">${escHtml(log.prompt)}</td>
+          <td><span class="badge badge-${log.verdict.toLowerCase()}">${log.verdict}</span></td>
+          <td>${log.triggered_layer > 0 ? 'Layer ' + log.triggered_layer : '—'}</td>
+          <td>${log.confidence}</td>
+          <td>${log.latency_ms}ms</td>
+        </tr>`).join('');
+    }
+
+    // Status dot
+    document.getElementById('statusDot').style.background = '#22c55e';
+    document.getElementById('statusText').textContent = 'Live';
+  } catch (e) {
+    document.getElementById('statusDot').style.background = '#ef4444';
+    document.getElementById('statusText').textContent = 'Offline';
+  }
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Countdown badge
+let countdown = 5;
+setInterval(() => {
+  countdown--;
+  document.getElementById('refreshBadge').textContent = `Auto-refresh: ${countdown}s`;
+  if (countdown <= 0) {
+    countdown = 5;
+    refreshData();
+  }
+}, 1000);
+
+// Initial status
+document.getElementById('statusDot').style.background = '#22c55e';
+document.getElementById('statusText').textContent = 'Live';
+</script>
+</body>
+</html>
